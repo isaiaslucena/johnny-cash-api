@@ -7,6 +7,9 @@
   "author": "Isaias Neto <isaiasneto@gmail.com>",
   "license": "GPL",
   "private": false,
+  "scripts": {
+    "dev": "node server"
+  },
   "dependencies": {
     "debug": "^4.2.0",
     "express": "^4.17.1",
