@@ -1,0 +1,10 @@
+{
+  "name": "johnny-cash-api",
+  "version": "1.0.0",
+  "description": "Johnny Cash API",
+  "main": "app.js",
+  "repository": "https://github.com/isaiasneto/johnny-cash-api",
+  "author": "Isaias Neto <isaiasneto@gmail.com>",
+  "license": "GPL",
+  "private": false
+}
