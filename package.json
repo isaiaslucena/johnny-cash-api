@@ -6,5 +6,8 @@
   "repository": "https://github.com/isaiasneto/johnny-cash-api",
   "author": "Isaias Neto <isaiasneto@gmail.com>",
   "license": "GPL",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
