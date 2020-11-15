@@ -8,7 +8,14 @@
   "license": "GPL",
   "private": false,
   "scripts": {
-    "dev": "node server"
+    "dev": "DEBUG=johnny-cash-api:* node server",
+    "test": "jest"
+  },
+ "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "dependencies": {
     "debug": "^4.2.0",
