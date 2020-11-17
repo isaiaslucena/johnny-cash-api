@@ -8,7 +8,7 @@
   "license": "GPL",
   "private": false,
   "scripts": {
-    "dev": "DEBUG=johnny-cash-api:* node server",
+    "dev": "DEBUG=johnny-cash-api:* nodemon server",
     "start": "node server",
     "test": "jest --coverage"
   },
