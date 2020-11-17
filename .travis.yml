@@ -7,8 +7,8 @@ deploy:
   provider: heroku
 branches:
   only:
-  - master
-  - develop
+    - master
+    - develop
 language: node_js
 node_js:
   - 14
