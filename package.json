@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "DEBUG=johnny-cash-api:* nodemon server",
     "test": "jest --coverage",
+    "migrate": "NODE_ENV=production node_modules/.bin/sequelize db:migrate --debug --config src/config/config.js --migrations-path src/migrations --models-path src/models",
     "start": "node server"
   },
   "jest": {
