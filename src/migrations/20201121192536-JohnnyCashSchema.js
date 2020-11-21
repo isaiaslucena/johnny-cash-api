@@ -89,7 +89,7 @@ module.exports = {
         },
         paidInBox: {
           type: Sequelize.INTEGER,
-          allowNull: false,
+          allowNull: true,
           references: {
               model: 'JohnnyPaymentLog',
               key: 'id'
