@@ -1,6 +1,6 @@
 let OrderLogModel;
 
-if (process.env.ENV === 'testing') {
+if (process.env.NODE_ENV === 'testing') {
   const dbMock = require('../config/dbMock');
   const orderLogMock = require('../mocks/orderLogMock');
 
