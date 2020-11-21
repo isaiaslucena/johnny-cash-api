@@ -9,8 +9,8 @@
   "private": false,
   "scripts": {
     "dev": "DEBUG=johnny-cash-api:* nodemon server",
-    "start": "node server",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "start": "node server"
   },
   "jest": {
     "testEnvironment": "node",
