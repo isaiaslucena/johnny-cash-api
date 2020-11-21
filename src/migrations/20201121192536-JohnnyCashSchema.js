@@ -45,6 +45,40 @@ module.exports = {
     );
 
     queryInterface.createTable(
+      'JohnnyPaymentLog',
+      {
+        id: {
+          type: Sequelize.INTEGER,
+          primaryKey: true,
+          autoIncrement: true
+        },
+        time_created: {
+          type: Sequelize.DATE,
+          allowNull: false,
+          defaultValue: Sequelize.NOW,
+        },
+        employeeId: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          references: {
+              model: 'JohnnyEmployee',
+              key: 'id'
+          },
+          onUpdate: 'cascade',
+          onDelete: 'cascade'
+        },
+        amount: {
+          type: Sequelize.INTEGER,
+          allowNull: false
+        }
+      },
+      {
+        engine: 'InnoDB',
+        charset: 'utf8',
+      }
+    );
+
+    queryInterface.createTable(
       'JohnnyOrderLog',
       {
         id: {
@@ -94,40 +128,6 @@ module.exports = {
           },
           onUpdate: 'cascade',
           onDelete: 'cascade'
-        }
-      },
-      {
-        engine: 'InnoDB',
-        charset: 'utf8',
-      }
-    );
-
-    queryInterface.createTable(
-      'JohnnyPaymentLog',
-      {
-        id: {
-          type: Sequelize.INTEGER,
-          primaryKey: true,
-          autoIncrement: true
-        },
-        time_created: {
-          type: Sequelize.DATE,
-          allowNull: false,
-          defaultValue: Sequelize.NOW,
-        },
-        employeeId: {
-          type: Sequelize.INTEGER,
-          allowNull: false,
-          references: {
-              model: 'JohnnyEmployee',
-              key: 'id'
-          },
-          onUpdate: 'cascade',
-          onDelete: 'cascade'
-        },
-        amount: {
-          type: Sequelize.INTEGER,
-          allowNull: false
         }
       },
       {
