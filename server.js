@@ -36,7 +36,7 @@ const onListening = () => {
 }
 
 const normalizePort = (val) => {
-  var port = parseInt(val, 10);
+  const port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -57,5 +57,6 @@ const server = http.createServer(app);
 app.set('port', port);
 
 server.listen(port);
+
 server.on('error', onError);
 server.on('listening', onListening);
