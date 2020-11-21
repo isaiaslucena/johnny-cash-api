@@ -8,6 +8,7 @@ if (process.env.ENV === 'testing') {
 } else {
   const sequelize = require('../config/db');
   const { DataTypes } = require('sequelize');
+
   OrderLogModel = sequelize.define('orderLog', {
     time_created: {
       type: DataTypes.DATE,
