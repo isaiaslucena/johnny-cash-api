@@ -61,11 +61,23 @@ module.exports = {
         },
         employeeId: {
           type: Sequelize.INTEGER,
-          allowNull: false
+          allowNull: false,
+          references: {
+              model: 'JohnnyEmployee',
+              key: 'id'
+          },
+          onUpdate: 'cascade',
+          onDelete: 'cascade'
         },
         skuId: {
           type: Sequelize.INTEGER,
-          allowNull: false
+          allowNull: false,
+          references: {
+              model: 'JohnnySku',
+              key: 'id'
+          },
+          onUpdate: 'cascade',
+          onDelete: 'cascade'
         },
         quantity: {
           type: Sequelize.INTEGER,
@@ -77,8 +89,14 @@ module.exports = {
         },
         paidInBox: {
           type: Sequelize.INTEGER,
-          allowNull: false
-        },
+          allowNull: false,
+          references: {
+              model: 'JohnnyPaymentLog',
+              key: 'id'
+          },
+          onUpdate: 'cascade',
+          onDelete: 'cascade'
+        }
       },
       {
         engine: 'InnoDB',
@@ -101,12 +119,18 @@ module.exports = {
         },
         employeeId: {
           type: Sequelize.INTEGER,
-          allowNull: false
+          allowNull: false,
+          references: {
+              model: 'JohnnyEmployee',
+              key: 'id'
+          },
+          onUpdate: 'cascade',
+          onDelete: 'cascade'
         },
         amount: {
           type: Sequelize.INTEGER,
           allowNull: false
-        },
+        }
       },
       {
         engine: 'InnoDB',
