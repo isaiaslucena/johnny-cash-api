@@ -55,7 +55,7 @@ module.exports = {
         time_created: {
           type: Sequelize.DATE,
           allowNull: false,
-          defaultValue: Sequelize.NOW,
+          defaultValue: Sequelize.fn('now'),
         },
         employeeId: {
           type: Sequelize.INTEGER,
@@ -89,7 +89,7 @@ module.exports = {
         time_created: {
           type: Sequelize.DATE,
           allowNull: false,
-          defaultValue: Sequelize.NOW,
+          defaultValue: Sequelize.fn('now'),
         },
         employeeId: {
           type: Sequelize.INTEGER,
