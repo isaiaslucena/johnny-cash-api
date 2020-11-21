@@ -1,6 +1,6 @@
 let EmployeeModel;
 
-if (process.env.ENV === 'testing') {
+if (process.env.NODE_ENV === 'testing') {
   const dbMock = require('../config/dbMock');
   const employeeMock = require('../mocks/employeeMock');
 

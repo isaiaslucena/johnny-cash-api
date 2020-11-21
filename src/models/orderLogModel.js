@@ -1,6 +1,6 @@
 let OrderLogModel;
 
-if (process.env.ENV === 'testing') {
+if (process.env.NODE_ENV === 'testing') {
   const dbMock = require('../config/dbMock');
   const orderLogMock = require('../mocks/orderLogMock');
 
@@ -8,6 +8,7 @@ if (process.env.ENV === 'testing') {
 } else {
   const sequelize = require('../config/db');
   const { DataTypes } = require('sequelize');
+
   OrderLogModel = sequelize.define('orderLog', {
     time_created: {
       type: DataTypes.DATE,
