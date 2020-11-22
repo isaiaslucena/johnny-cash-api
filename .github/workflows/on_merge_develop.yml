@@ -42,6 +42,6 @@ jobs:
           DB_USER: ${{secrets.DB_USER_STAGING}}
           DB_PASS: ${{secrets.DB_PASS_STAGING}}
           DB_NAME: ${{secrets.DB_NAME_STAGING}}
-      - run: yarn install
+      - run: NODE_ENV=testing yarn install
       - run: yarn test
       - run: yarn migrate
