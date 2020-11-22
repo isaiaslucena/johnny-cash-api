@@ -9,6 +9,19 @@ router.get('/', (req, res, next) => {
 
 router.get('/employee', EmployeeControllerIndex);
 
+router.get('/orderLog/topSelling', (req, res, next) => {
+  const { startDate, endDate } = req.query;
+
+  if (!startDate || !endDate) return res.json({ message: 'Must have query params startDate and endDate!'}, 500);
+
+  const filters = {
+    startDate,
+    endDate
+  };
+
+  OrderLogController.topSelling(req, res, filters);
+});
+
 router.get('/orderLog', (req, res, next) => {
   const { startDate, endDate } = req.query;
 
