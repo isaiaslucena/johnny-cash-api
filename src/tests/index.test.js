@@ -62,3 +62,23 @@ describe("Test the route /orderLog", () => {
       });
   });
 });
+
+describe("Test the route /orderLog/topSelling", () => {
+  test("It should response with error if not set the query params", done => {
+    request(app)
+      .get("/orderLog/topSelling")
+      .then(response => {
+        expect(response.statusCode).toBe(500);
+        done();
+      });
+  });
+
+  test("It should response top selling products between 2019-09-01 and 2019-09-06", done => {
+    request(app)
+      .get("/orderLog/topSelling?startDate=2019-09-01&endDate=2019-09-06")
+      .then(response => {
+        expect(response.body.length).toBe(1);
+        done();
+      });
+  });
+});
