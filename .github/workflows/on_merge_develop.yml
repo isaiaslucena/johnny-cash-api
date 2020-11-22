@@ -27,3 +27,21 @@ jobs:
           buildpack: "https://github.com/heroku/heroku-buildpack-nodejs#latest"
           healthcheck: "https://johnny-cash-staging-api.herokuapp.com/"
           delay: 10
+        env:
+          HD_NODE_ENV: ${{secrets.NODE_ENV$}}
+          HD_DB_DIALECT: ${{secrets.DB_DIALECT$}}
+          HD_DB_HOST: ${{secrets.DB_HOST_STAGING$}}
+          HD_DB_PORT: ${{secrets.DB_PORT$}}
+          HD_DB_USER: ${{secrets.DB_USER_STAGING$}}
+          HD_DB_PASS: ${{secrets.DB_PASS_STAGING$}}
+          HD_DB_NAME: ${{secrets.DB_NAME_STAGING$}}
+          NODE_ENV: ${{secrets.NODE_ENV$}}
+          DB_DIALECT: ${{secrets.DB_DIALECT$}}
+          DB_HOST: ${{secrets.DB_HOST_STAGING$}}
+          DB_PORT: ${{secrets.DB_PORT$}}
+          DB_USER: ${{secrets.DB_USER_STAGING$}}
+          DB_PASS: ${{secrets.DB_PASS_STAGING$}}
+          DB_NAME: ${{secrets.DB_NAME_STAGING$}}
+    - run: yarn install
+    - run: yarn test
+    - run: yarn migrate
