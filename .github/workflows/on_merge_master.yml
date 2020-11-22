@@ -1,0 +1,49 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Deploy Production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn install
+      - run: NODE_ENV=testing yarn test
+      - run: yarn migrate
+        env:
+          NODE_ENV: ${{secrets.NODE_ENV}}
+          DB_DIALECT: ${{secrets.DB_DIALECT}}
+          DB_HOST: ${{secrets.DB_HOST}}
+          DB_PORT: ${{secrets.DB_PORT}}
+          DB_USER: ${{secrets.DB_USER}}
+          DB_PASS: ${{secrets.DB_PASS}}
+          DB_NAME: ${{secrets.DB_NAME}}
+      - uses: akhileshns/heroku-deploy@v3.6.8
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "johnny-cash-api"
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          buildpack: "https://github.com/heroku/heroku-buildpack-nodejs#latest"
+          healthcheck: "https://johnny-cash-staging-api.herokuapp.com/"
+          delay: 10
+        env:
+          HD_NODE_ENV: ${{secrets.NODE_ENV}}
+          HD_DB_DIALECT: ${{secrets.DB_DIALECT}}
+          HD_DB_HOST: ${{secrets.DB_HOST}}
+          HD_DB_PORT: ${{secrets.DB_PORT}}
+          HD_DB_USER: ${{secrets.DB_USER}}
+          HD_DB_PASS: ${{secrets.DB_PASS}}
+          HD_DB_NAME: ${{secrets.DB_NAME}}
+
