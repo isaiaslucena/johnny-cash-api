@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: yarn install
-      - run: testing yarn test
+      - run: yarn test
       - run: yarn migrate
         env:
           NODE_ENV: ${{secrets.NODE_ENV}}
