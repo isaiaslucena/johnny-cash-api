@@ -23,6 +23,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
       env:
-        NODE_ENV: ${{secrets.NODE_ENV_TESTING$}}
+        NODE_ENV: ${{secrets.NODE_ENV_TESTING}}
     - run: yarn install
     - run: yarn test
