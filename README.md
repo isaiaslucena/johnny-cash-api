@@ -17,7 +17,19 @@ Johnny Ca$h API
 https://johnny-cash-api.herokuapp.com/orderLog/topSelling?startDate=2019-09-01&endDate=2019-09-10
 ```
 
-[Endpoint](https://johnny-cash-api.herokuapp.com/employee) to employees:
+[Endpoint](https://johnny-cash-api.herokuapp.com/orderLog) to get all orders:
+
+```
+https://johnny-cash-api.herokuapp.com/orderLog
+```
+
+[Endpoint](https://johnny-cash-api.herokuapp.com/orderLog?startDate=2019-09-01&endDate=2019-09-10) to get all orders os selected date range:
+
+```
+https://johnny-cash-api.herokuapp.com/orderLog?startDate=2019-09-01&endDate=2019-09-10
+```
+
+[Endpoint](https://johnny-cash-api.herokuapp.com/employee) to get all employees:
 
 ```
 https://johnny-cash-api.herokuapp.com/employee
