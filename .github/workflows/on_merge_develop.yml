@@ -24,5 +24,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "johnny-cash-staging-api"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          healthcheck: "https://johnny-cash-staging-api.herokuapp.com/"
           buildpack: "https://github.com/heroku/heroku-buildpack-nodejs#latest"
+          healthcheck: "https://johnny-cash-staging-api.herokuapp.com/"
+          delay: 10
