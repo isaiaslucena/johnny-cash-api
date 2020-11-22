@@ -19,6 +19,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - run: yarn install
+      - run: NODE_ENV=testing yarn test
+      - run: yarn migrate
       - uses: akhileshns/heroku-deploy@v3.6.8
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
@@ -42,6 +45,4 @@ jobs:
           DB_USER: ${{secrets.DB_USER_STAGING}}
           DB_PASS: ${{secrets.DB_PASS_STAGING}}
           DB_NAME: ${{secrets.DB_NAME_STAGING}}
-      - run: NODE_ENV=testing yarn install
-      - run: yarn test
-      - run: yarn migrate
+
