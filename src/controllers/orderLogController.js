@@ -1,9 +1,16 @@
-const { Op } = require('sequelize');
-const OrderLogController = require('../models/orderLogModel');
+const { Op, Sequelize } = require('sequelize');
+const OrderLogModel = require('../models/orderLogModel');
+const EmployeeModel = require('../models/employeeModel');
+const SkuModel = require('../models/skuModel');
+const PaymentLogModel = require('../models/paymentLogModel');
 
-const orderLogController = {
+OrderLogModel.belongsTo(EmployeeModel, {foreignKey: 'employeeId' });
+OrderLogModel.belongsTo(SkuModel, {foreignKey: 'skuId' });
+OrderLogModel.belongsTo(PaymentLogModel, {foreignKey: 'paidInBox' });
+
+const OrderLogController = {
   index: async (req, res) => {
-    const orderLog = await OrderLogController.findAll({
+    const orderLog = await OrderLogModel.findAll({
       order: [
         ['time_created', 'asc']
       ]
@@ -11,18 +18,37 @@ const orderLogController = {
     return res.json(orderLog);
   },
   dateRange: async (req, res, filters) => {
-    const paymentLogDateRange = await OrderLogController.findAll({
+    const orderLogDateRange = await OrderLogModel.findAll({
       where: {
         time_created: {
-          [Op.between]: [`${filters.startDate} 00:00:00`, `${filters.endDate} 23:59:59`]
+          [Op.between]: [`${filters.startDate}T00:00:00Z`, `${filters.endDate}T23:59:59Z`]
         }
       },
       order: [
         ['time_created', 'asc']
       ]
     });
-    return res.json(paymentLogDateRange);
+    return res.json(orderLogDateRange);
+  },
+  topSelling: async (req, res, filters) => {
+    const orderLogTopSelling = await OrderLogModel.findAll({
+      attributes: ['sku.id', 'sku.name', [Sequelize.fn('sum', Sequelize.col('quantity')), 'total_sold']],
+      where: {
+        time_created: {
+          [Op.between]: [`${filters.startDate}T00:00:00Z`, `${filters.endDate}T23:59:59Z`]
+        }
+      },
+      order: [
+        [Sequelize.fn('sum', Sequelize.col('quantity')), 'desc']
+      ],
+      group: [
+        ['skuId']
+      ],
+      include: SkuModel
+    });
+
+    return res.json(orderLogTopSelling);
   }
 }
 
-module.exports = orderLogController;
+module.exports = OrderLogController;
