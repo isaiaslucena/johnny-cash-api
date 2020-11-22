@@ -22,6 +22,14 @@ jobs:
       - run: yarn install
       - run: NODE_ENV=testing yarn test
       - run: yarn migrate
+        env:
+          NODE_ENV: ${{secrets.NODE_ENV}}
+          DB_DIALECT: ${{secrets.DB_DIALECT}}
+          DB_HOST: ${{secrets.DB_HOST_STAGING}}
+          DB_PORT: ${{secrets.DB_PORT}}
+          DB_USER: ${{secrets.DB_USER_STAGING}}
+          DB_PASS: ${{secrets.DB_PASS_STAGING}}
+          DB_NAME: ${{secrets.DB_NAME_STAGING}}
       - uses: akhileshns/heroku-deploy@v3.6.8
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
@@ -38,11 +46,4 @@ jobs:
           HD_DB_USER: ${{secrets.DB_USER_STAGING}}
           HD_DB_PASS: ${{secrets.DB_PASS_STAGING}}
           HD_DB_NAME: ${{secrets.DB_NAME_STAGING}}
-          NODE_ENV: ${{secrets.NODE_ENV}}
-          DB_DIALECT: ${{secrets.DB_DIALECT}}
-          DB_HOST: ${{secrets.DB_HOST_STAGING}}
-          DB_PORT: ${{secrets.DB_PORT}}
-          DB_USER: ${{secrets.DB_USER_STAGING}}
-          DB_PASS: ${{secrets.DB_PASS_STAGING}}
-          DB_NAME: ${{secrets.DB_NAME_STAGING}}
 
